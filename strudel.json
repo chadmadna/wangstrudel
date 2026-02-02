@@ -1,1 +1,32 @@
-{"_base": "https://raw.githubusercontent.com/chadmadna/wangstrudel/main/","wangbass":["wangbass/wangbass_break.wav","wangbass/wangbass_chorus.wav","wangbass/wangbass_main.wav","wangbass/wangbass_outro.wav","wangbass/wangbass_prech.wav","wangbass/wangbass_verse.wav"],"wangdrum":["wangdrum/wangdrum_bd.wav","wangdrum/wangdrum_bd2.wav","wangdrum/wangdrum_bl.wav","wangdrum/wangdrum_cfx.wav","wangdrum/wangdrum_cr.wav","wangdrum/wangdrum_hh.wav","wangdrum/wangdrum_ht.wav","wangdrum/wangdrum_lt.wav","wangdrum/wangdrum_mt.wav","wangdrum/wangdrum_oh.wav","wangdrum/wangdrum_rd.wav","wangdrum/wangdrum_sd.wav","wangdrum/wangdrum_sd2.wav"],"wangkeys":["wangkeys/wangkeys_c2.wav"],"wanglead":["wanglead/wanglead_le.wav","wanglead/wanglead_lem.wav"],"wangmini":["wangmini/wangmini_c4.wav"],"wangpad":["wangpad/wangpad_c2.wav","wangpad/wangpad_c3.wav"]}
+{
+  "_base":"https://raw.githubusercontent.com/chadmadna/wangstrudel/main/",
+  "wb_break": "wangbass/wangbass_break.wav",
+  "wb_chorus": "wangbass/wangbass_chorus.wav",
+  "wb_main": "wangbass/wangbass_main.wav",
+  "wb_outro": "wangbass/wangbass_outro.wav",
+  "wb_prech": "wangbass/wangbass_prech.wav",
+  "wb_verse": "wangbass/wangbass_verse.wav",
+  "bd": "wangdrum/wangdrum_bd.wav",
+  "bd2": "wangdrum/wangdrum_bd2.wav",
+  "bl": "wangdrum/wangdrum_bl.wav",
+  "cfx": "wangdrum/wangdrum_cfx.wav",
+  "cr": "wangdrum/wangdrum_cr.wav",
+  "hh": "wangdrum/wangdrum_hh.wav",
+  "ht": "wangdrum/wangdrum_ht.wav",
+  "lt": "wangdrum/wangdrum_lt.wav",
+  "mt": "wangdrum/wangdrum_mt.wav",
+  "oh": "wangdrum/wangdrum_oh.wav",
+  "rd": "wangdrum/wangdrum_rd.wav",
+  "sd": "wangdrum/wangdrum_sd.wav",
+  "sd2": "wangdrum/wangdrum_sd2.wav",
+  "wangkeys": "wangkeys/wangkeys_c2.wav",
+  "wanglead":[
+	"wanglead/wanglead_le.wav",
+	"wanglead/wanglead_lem.wav"
+  ],
+  "wangmini": "wangmini/wangmini_c4.wav",
+  "wangpad":{
+	"c2": "wangpad/wangpad_c2.wav",
+	"c3": "wangpad/wangpad_c3.wav"
+  }
+}
