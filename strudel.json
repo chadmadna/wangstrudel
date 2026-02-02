@@ -1,4 +1,5 @@
 {
+  "_base": "https://raw.githubusercontent.com/chadmadna/wangstrudel/main/",
   "wbass":[
     "wbass/wangbass_break.wav",
     "wbass/wangbass_chorus.wav",
