@@ -1,0 +1,35 @@
+{
+  "_base": "https://raw.githubusercontent.com/chadmadna/wangstrudel/main/",
+  "wbass": {
+    "wbass_main": "wbass/wangbass_main.wav",
+    "wbass_prech": "wbass/wangbass_prech.wav",
+    "wbass_chorus": "wbass/wangbass_chorus.wav",
+    "wbass_break": "wbass/wangbass_break.wav",
+    "wbass_outro": "wbass/wangbass_outro.wav",
+  },
+  "wdrums": {
+    "bd": "wdrums/wangbass_bd.wav",
+    "bd2": "wdrums/wangbass_bd2.wav",
+    "bl": "wdrums/wangbass_bl.wav",
+    "sd": "wdrums/wangbass_sd.wav",
+    "sd2": "wdrums/wangbass_sd2.wav",
+    "hh": "wdrums/wangbass_hh.wav",
+    "oh": "wdrums/wangbass_oh.wav",
+    "rd": "wdrums/wangbass_rd.wav",
+    "cr": "wdrums/wangbass_cr.wav",
+    "cfx": "wdrums/wangbass_cfx.wav",
+    "ht": "wdrums/wangbass_ht.wav",
+    "mt": "wdrums/wangbass_mt.wav",
+    "lt": "wdrums/wangbass_lt.wav",
+  },
+  "wkeys": ["wkeys/wangkeys_c2.wav"],
+  "wmini": ["wkeys/wangmini_c4.wav"],
+  "wlead": {
+    "le": "wlead/wanglead_0.wav",
+    "lem": "wlead/wanglead_1.wav",
+  },
+  "wpads": {
+    "c2": "wpads/wangpad_c2.wav",
+    "c3": "wpads/wangpad_c3.wav"
+  }
+}
