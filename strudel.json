@@ -1,1 +1,37 @@
-{"wbass":["wbass/wangbass_break.wav","wbass/wangbass_chorus.wav","wbass/wangbass_main.wav","wbass/wangbass_outro.wav","wbass/wangbass_prech.wav","wbass/wangbass_verse.wav"],"wdrums":["wdrums/wangdrum_bd.wav","wdrums/wangdrum_bd2.wav","wdrums/wangdrum_bl.wav","wdrums/wangdrum_cfx.wav","wdrums/wangdrum_cr.wav","wdrums/wangdrum_hh.wav","wdrums/wangdrum_ht.wav","wdrums/wangdrum_lt.wav","wdrums/wangdrum_mt.wav","wdrums/wangdrum_oh.wav","wdrums/wangdrum_rd.wav","wdrums/wangdrum_sd.wav","wdrums/wangdrum_sd2.wav"],"wkeys":["wkeys/wangkeys_c2.wav","wkeys/wangmini_c4.wav"],"wlead":["wlead/wanglead_le.wav","wlead/wanglead_lem.wav"],"wpads":["wpads/wangpad_c2.wav","wpads/wangpad_c3.wav"]}
+{
+  "wbass":[
+    "wbass/wangbass_break.wav",
+    "wbass/wangbass_chorus.wav",
+    "wbass/wangbass_main.wav",
+    "wbass/wangbass_outro.wav",
+    "wbass/wangbass_prech.wav",
+    "wbass/wangbass_verse.wav"
+  ],
+  "wdrums":[
+    "wdrums/wangdrum_wbd.wav",
+    "wdrums/wangdrum_wbd2.wav",
+    "wdrums/wangdrum_wbl.wav",
+    "wdrums/wangdrum_wcfx.wav",
+    "wdrums/wangdrum_wcr.wav",
+    "wdrums/wangdrum_whh.wav",
+    "wdrums/wangdrum_wht.wav",
+    "wdrums/wangdrum_wlt.wav",
+    "wdrums/wangdrum_wmt.wav",
+    "wdrums/wangdrum_woh.wav",
+    "wdrums/wangdrum_wrd.wav",
+    "wdrums/wangdrum_wsd.wav",
+    "wdrums/wangdrum_wsd2.wav"
+  ],
+  "wkeys":{
+    "c2": "wkeys/wangkeys_c2.wav",
+    "c4": "wkeys/wangmini_c4.wav"
+  },
+  "wlead":[
+    "wlead/wanglead_le.wav",
+    "wlead/wanglead_lem.wav"
+  ],
+  "wpads":{
+    "c2": "wpads/wangpad_c2.wav",
+    "c3": "wpads/wangpad_c3.wav"
+  }
+}
