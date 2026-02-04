@@ -24,6 +24,20 @@ let oneShots = {
   riserSlow: s("~!3 pink").slow(8),
 }
 
+let A2 = "[[a3 e3 b2]@0.2]"
+let G2 = "[[g3 d3 a2]@0.2]"
+
+let progs = {
+  main: `[${A2}@2 ${A2}@2 ${A2}@2 ${A2} ${A2}@2 ${A2} ${A2}@2 ${A2}@4] [${G2}@2 ${G2}@2 ${G2}@2 ${G2} ${G2}@2 ${G2} ${G2}@2 ${G2}@4]`
+}
+
+let guitarPat = {
+  // main: chord(`<[[A2!3]@6 A2 A2@2 A2 A2@2 A2@4]
+  //               [[G2!3]@6 G2 G2@2 G2 G2@2 G2@4]>`)
+  //   .voicing().fast(1),
+  main: note(progs.main).slow(2),
+}
+
 let bassPat = {
   main: s("wb_main"),
   prech: s("wb_prech"),
@@ -47,6 +61,9 @@ let leadPat = note(`e4 f4 ~ f4 ~ f4 d4 e4 e4@2 ~ e4 ~ e4 ~ e4   f4 e4 d4 c4 b3 b
 let drumsTrack = x => x.slow(2)
 
 let bassTrack = x => x.chop(64).loopAt(8)
+
+let guitarTrack = x => x.s("gm_electric_guitar_jazz")
+  .chorus(.4).dist(.3)
 
 let keysTrack = x => x.s("square")
   .lpf(800).lpenv(2).lpq(7).lpd(.1)
@@ -88,6 +105,7 @@ let noiseTrack = x => x.s("supersaw")
 // multi-pattern
 let drums = drumsPat.main
 let bass = bassPat.main
+let guitar = guitarPat.main
 let pads = padsPat.main
 
 // one-shots
@@ -107,9 +125,10 @@ let noise = note("e2, bb2, e3").euclid(5, 6).fast(4)
   **********************************/
 $: stack(
   drums.apply(drumsTrack).compressor("-5:5:1:.02:.02").gain(slider(0.9,0,1)),
-  bass.apply(bassTrack).postgain(slider(0.475,0,1)),
+  // bass.apply(bassTrack).postgain(slider(0.475,0,1)),
+  guitar.apply(guitarTrack).gain(slider(0.6755,0,.7)),
 
-  pads.apply(padsTrack).gain(slider(0.0906,0,.6)),
+  // pads.apply(padsTrack).gain(slider(0.1032,0,.6)),
   // keys.apply(keysTrack).gain(slider(0.1224,0,.6)),
   // mini.apply(miniTrack).gain(slider(0.1938,0,.6)),
   // lead.apply(leadTrack).gain(slider(0.481,0,1)),
@@ -121,4 +140,3 @@ $: stack(
 )
   // .compressor("-10:10:.9:.02:.05")
   // .postgain(slider(0.6504, 0, 1.2))
-
