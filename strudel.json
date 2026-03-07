@@ -21,12 +21,13 @@
   "sd2": "wangdrum/wangdrum_sd2.wav",
   "wangkeys": "wangkeys/wangkeys_c2.wav",
   "wanglead":[
-	"wanglead/wanglead_le.wav",
-	"wanglead/wanglead_lem.wav"
+  	"wanglead/wanglead_le.wav",
+  	"wanglead/wanglead_lem.wav"
   ],
   "wangmini": "wangmini/wangmini_c4.wav",
   "wangpad":{
-	"c2": "wangpad/wangpad_c2.wav",
-	"c3": "wangpad/wangpad_c3.wav"
-  }
+  	"c2": "wangpad/wangpad_c2.wav",
+  	"c3": "wangpad/wangpad_c3.wav"
+  },
+  "wangnoise": "wangnoise/wangnoise_screech.wav"
 }
