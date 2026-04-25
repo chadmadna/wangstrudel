@@ -29,5 +29,7 @@
   	"c2": "wangpad/wangpad_c2.wav",
   	"c3": "wangpad/wangpad_c3.wav"
   },
-  "wangnoise": "wangnoise/wangnoise_screech.wav"
+  "wangnoise": "wangnoise/wangnoise_screech.wav",
+  "embegeoke": "random/embegeoke.wav",
+  "akting": "random/akting.wav"
 }
