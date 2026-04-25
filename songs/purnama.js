@@ -49,7 +49,7 @@ flash
     .saturate(1)
     .out(o0)
 
-samples('https://raw.githubusercontent.com/chadmadna/wangstrudel/main/strudel.json?v=16')
+samples('https://raw.githubusercontent.com/chadmadna/wangstrudel/main/strudel.json?v=17')
 
 setCpm(128/4)
 
@@ -87,6 +87,8 @@ let riserTrack = x => x
   .att(.4).rel(2)
   .lpf(200).lpq(20).lpenv(10).lpa(6).lpr(1.3)
   .gain(slider(0.3848, 0, .8))
+
+let wangnoiseTrack = x => x.chop(64)
 
 /**********************************
   *          PATTERNS             *
@@ -138,6 +140,7 @@ let drumsPat = {
 let snareRush = s("~!3 [sd!32]").slow(2)
 let crash = s("cfx").slow(8)
 let riser = s("~!6 pink@2").slow(8)
+let wangnoise = note("c2").s("wangnoise").loopAt(8).trans(12).gain(.5)
 
 /**********************************
   *            MIXER!!            *
@@ -152,6 +155,7 @@ _$: stack(
   crash.apply(crashTrack),
   riser.apply(riserTrack),
   snareRush.apply(snareRushTrack),
+  wangnoise.apply(wangnoiseTrack),
 )
   .compressor("-10:5:.9:.04:.05")
   .postgain(slider(0.8388, 0, 1.2))
@@ -299,6 +303,9 @@ let prechorus_b_2 = stack(
 )
 
 let break_1 = stack(
+  bassPat.main.apply(bassTrack).lpf(saw.range(300, 500).slow(8)),
+  bassGtrPat.main.apply(bassGtrTrack),
+  wangnoise.apply(wangnoiseTrack).fast(2),
   crash.apply(crashTrack),
   riser.apply(riserTrack),
   stack(
@@ -394,17 +401,17 @@ let outro_3 = stack(
 
 $duck: s(`sd!4`).gain(.00001).duckorbit(2).duckattack(.25).duckdepth(.5)
 $: arrange(
-  // [8, intro_1],
-  // [8, intro_2],
-  // [8, verse_a_1],
-  // [8, verse_a_2],
-  // [8, prechorus_a_1],
-  // [8, prechorus_a_2],
-  // [8, verse_b_1],
-  // [8, verse_b_2],
-  // [8, prechorus_b_1],
-  // [8, prechorus_b_2],
-  [8, break_1],
+  [8, intro_1],
+  [8, intro_2],
+  [8, verse_a_1],
+  [8, verse_a_2],
+  [8, prechorus_a_1],
+  [8, prechorus_a_2],
+  [8, verse_b_1],
+  [8, verse_b_2],
+  [8, prechorus_b_1],
+  [8, prechorus_b_2],
+  [16, break_1],
   [12, break_2],
   [4, break_3],
   [16, chorus_1],
@@ -412,7 +419,5 @@ $: arrange(
   [16, outro_1],
   [4, outro_2],
   [4, outro_3],
-  [8, s(`~`)]
-)
-  .compressor("-10:5:.9:.04:.05")
-  .postgain(slider(0.8388, 0, 1.2))
+  [64, s(`~`)]
+).compressor("-15:10:.9:.04:.05").postgain(.8)

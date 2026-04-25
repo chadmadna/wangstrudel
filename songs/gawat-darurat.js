@@ -5,27 +5,11 @@ await initHydra()
 
 speed = .3
 
-let moon = shape(90, 0.125)
-    .modulateScale(osc(1, 3), .2)
-    .scale(3, height / width)
-    .mask(osc(20, 1)
-        .kaleid(100)
-        .scale(3, height / width)
-        .thresh(.4)
-        .modulate(voronoi(1000)))
-
 let sky = shape(1, 1)
     .mult(voronoi(1000, 2)
         .blend(o0)
         .luma(.6)
         .rotate(() => -.3 * time))
-
-let hue = osc(9, -.2)
-    .kaleid(10)
-    .scale(1, 1, width / height)
-    .contrast(.4)
-    .brightness(-.1)
-    .colorama(.9)
 
 let flash = osc(10, 1, .7)
     .brightness(.01)
@@ -43,11 +27,9 @@ let flash = osc(10, 1, .7)
 
 flash
     .diff(sky)
-    .add(moon)
-    .add(hue)
     .color(.7, .5, .8)
-    .saturate(.7)
-    // .out(o0)
+    .saturate(.4)
+    .out(o0)
 
 samples('https://raw.githubusercontent.com/chadmadna/wangstrudel/main/strudel.json?v=16')
 
@@ -61,13 +43,13 @@ let drumsPat = {
   main: s(`bd bd ~ [bd!2] [~ bd]!2 ~!2 bd [bd!2] [~ bd] bd bd [~ bd] ~ bd, [~ sd]*4, ~!7 [mt lt] ~!8`).slow(2),
   mainHold: s(`bd bd ~ [bd!2] [~ bd]!2 ~!2 bd [bd bd] [~ bd] [bd ~] ~!4, [~ sd] [~ sd] [~ [sd ~ ~ sd]] ~`).slow(2),
   chorus: s(`bd bd ~ [bd!2] [~ bd]!2 ~!2 bd [bd!2] [~ bd] bd bd [~ bd] ~ bd, [~ sd]*4, [hh!2 oh ~]*8`).slow(2),
-  chorusHold: s(`[bd bd ~ [bd!2] [~ bd]!2 bd ~, [~ sd]*2, [hh!2 oh ~]*4]!2 [[cfx ~!3 cr cr cfx@2], bd ~!3 bd bd [bd!2] [bd!4], [~ oh]*8]@2`).slow(4),
+  chorusHold: stack(s(`[bd bd ~ [bd!2] [~ bd]!2 bd ~, [~ sd]*2, [hh!2 oh ~]*4]!2 [bd ~!3 bd bd [bd!2] [bd!4], [~ oh]*8]@2`), s(`~ [cfx@4 cr cr cfx@2]`).delay(.4).delayt(.3).delayfb(.7)).slow(4),
   break: s(`bd*16, [~ sd2]*8`).slow(2),
 }
 
 let oneShots = {
   snareRush: s(`~*3 [sd*64]`),
-  crash: s("cfx").slow(4),
+  crash: s("cfx").slow(4).delay(.4).delayt(.3).delayfb(.7),
   crashSlow: s("cfx").slow(8),
   riser: s("~!3 white").slow(4),
   riserSlow: s("~!3 pink").slow(8),
@@ -79,15 +61,16 @@ let guitarPat = {
 }
 
 let bassPat = {
-  main: s("wb_main").loopAt(8),
-  prech: s("wb_prech").loopAt(8),
-  chorus: s("wb_chorus").loopAt(16).end(.5),
-  break: s("wb_break").loopAt(8).gain(.6),
-  verse: s("wb_verse").loopAt(8).gain(.6),
+  main: s("wb_main").loopAt(8).gain(.5),
+  prech: s("wb_prech").loopAt(8).gain(.5),
+  chorus: s("wb_chorus").loopAt(16).end(.5).gain(.5),
+  break: s("wb_break").loopAt(8).gain(.5),
+  verse: s("wb_verse").loopAt(8).gain(.5),
 }
 
 let padsPat = {
   main: chord("<A2*8 G2*8>").slow(2).voicing(),
+  chorus: chord("<E5 F5 B5 [B!3 Baug]>").voicing(),
   break: chord("<E5 F5 B5 [B!3 Baug]>").voicing(),
 }
 let keysPat = chord("[~ E5]!8 [~ F5]!8 [~ B5]!8 [~ B]!4 [~ Baug]!4").slow(4).voicing()
@@ -98,7 +81,7 @@ let leadPat = note(`e4 f4 ~ f4 ~ f4 d4 e4 e4@2 ~ e4 ~ e4 ~ e4   f4 e4 d4 c4 b3 b
   *          TRACKS!!             *
   **********************************/
 
-let drumsTrack = x => x
+let drumsTrack = x => x.gain(1)
 
 let bassTrack = x => x.chop(64)
 
@@ -122,8 +105,7 @@ let padsTrack = x => x.s("supersaw")
 
 let leadTrack = x => x.s("supersaw")
   .fm(4).fmdecay(.7).fmsustain(.8)
-  .lpf(9000)
-  .chorus(.9)
+  .lpf(10000)
 
 let crashTrack = x => x.delay(.4).delayt(.3).delayfb(.7)
 
@@ -136,9 +118,9 @@ let riserTrack = x => x
   .lpf(200).lpq(20).lpenv(10).lpa(5).lpr(2)
 
 let noizeTrack = x => x.s("supersaw")
-  .fm(3).fmh(3.0123)
-  .dec(.3)
+  .fm(20).fmh(3.0123).fm2(14).fmh2(41)
   .dist(.8, .6).room(.3).rsize(30).chorus(.8)
+  .lpenv(4).lpf(300).lpq(10).lpd(.1)
 
 
 /**********************************
@@ -146,40 +128,45 @@ let noizeTrack = x => x.s("supersaw")
   **********************************/
 
 // multi-pattern
-let drums = drumsPat.main
-let bass = bassPat.main
+let drums = drumsPat
+  // .chorus
+  // .chorusHold
+  .break
+let bass = bassPat
+  // .chorus
+  .break
 let guitar = guitarPat.main
-let pads = padsPat.main
+let pads = padsPat.chorus
 
 // one-shots
-let crash = oneShots.crashSlow
+let crash = oneShots.crash
 let snareRush = oneShots.snareRush
-let riser = oneShots.riserSlow
+let riser = oneShots.riser
 
 // one-patterner
 let keys = keysPat
 let mini = miniPat
 let lead = leadPat
 
-let noize = note("e2, bb2, e3").euclid(5, 6).fast(4)
+let noize = note("e1, e0, e2").euclid(5, 6).fast(4)
 
 /**********************************
   *            MIXER!!            *
   **********************************/
 $: stack(
   drums.apply(drumsTrack).postgain(slider(1.4,0,1.4)),
-  bass.apply(bassTrack).postgain(slider(0.1494,0, .6)),
-  guitar.apply(guitarTrack).gain(slider(0.4305,0,.7)),
+  bass.apply(bassTrack).postgain(slider(0.0684,0, .6)),
+  // guitar.apply(guitarTrack).gain(slider(0.4305,0,.7)),
 
   pads.apply(padsTrack).gain(slider(0.0966,0,.6)),
   // keys.apply(keysTrack).gain(slider(0.1224,0,.6)),
-  // mini.apply(miniTrack).gain(slider(0.1938,0,.6)),
-  // lead.apply(leadTrack).gain(slider(0.481,0,1)),
+  mini.apply(miniTrack).gain(slider(0.1938,0,.6)),
+  // lead.apply(leadTrack).gain(slider(0.556,0,1)),
   // noize.apply(noizeTrack).gain(slider(0.0852, 0, 0.3)),
 
   crash.apply(crashTrack).gain(slider(1,0,1)),
   riser.apply(riserTrack).gain(slider(0.124, 0, .8)),
-  // snareRush.apply(snareRushTrack).postgain(slider(0.853,0,1)),
+  snareRush.apply(snareRushTrack).postgain(slider(0.853,0,1)),
 )
-  .compressor("-10:5:.9:.04:.05")
-  .postgain(slider(0.8388, 0, 1.2))
+  .compressor("-20:10:.9:.04:.05")
+  .postgain(slider(0.5328, 0, 1.2))
