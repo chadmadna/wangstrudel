@@ -41,6 +41,7 @@ let sectionMapping = (pat, section) => {
   switch (pat._name) {
     case 'drums':
       switch(section) {
+        case 'jam': return pat.verse
         case 'intro': return pat.intro
         case 'introFill': return pat.fillIntro
         case 'main': return pat.main
@@ -55,6 +56,7 @@ let sectionMapping = (pat, section) => {
       }
     case 'bass':
       switch(section) {
+        case 'jam': return pat.intro
         case 'intro': return pat.intro
         case 'introFill': return pat.intro
         case 'main': return pat.main
@@ -69,6 +71,7 @@ let sectionMapping = (pat, section) => {
       }
     case 'guitar':
       switch(section) {
+        case 'jam': return pat.intro
         case 'intro': return pat.intro
         case 'introFill': return pat.intro
         case 'verse2': return pat.verse
@@ -123,7 +126,7 @@ let drumsPat = {
     s(`bd [~ bd] bd bd`),
     s(`~ sd ~ sd`),
     s(`[hh oh]!4`),
-    s(`~@2 bl mt`).fast(2),
+    s(`~@2 bl mt`),
   ),
   fillIntro: stack(
     s(`bd*4`),
@@ -173,8 +176,8 @@ let drumsPat = {
 /*  GUITAR  */
 let guitarPat = {
   _name: 'guitar',
-  intro: note(`[[-3,0,4]]!8 [[-2,1,5]]!8 [[-3,0,4]]!8 [0, 4]@8`.slow(4)).s("<gm_synth_brass_2@12 gm_guitar_harmonics@4>".fast(4)).velocity("<1@12 0.7@4>".fast(4)),
-  verse: note(`[-3, 0, 4]@4 [-2, 1, 5]@3 [-2, 2, 5] [-3, 2b, 4]@4 [-1, 2, 6]@3 [[-2, 2, 5] [-3, 2b, 4]] [-2, 2, 5]@3 [-2, 2, 5] [-4, 0, 3]@4 [-3, 2b, 4]@4 [-2, 1, 5]@4`).slow(8).s("gm_synth_brass_2")
+  intro: note(`[[[-3,0,4]]!8 [[-2,1,5]]!8 [[-3,0,4]]!8 [0, 4]@8]`.slow(4)).s("<supersaw@12 gm_guitar_harmonics@4>".fast(4)).velocity("<0.8@12 0.7@4>".fast(4)),
+  verse: note(`[-3, 0, 4]@4 [-2, 1, 5]@3 [-2, 2, 5] [-3, 2b, 4]@4 [-1, 2, 6]@3 [[-2, 2, 5] [-3, 2b, 4]] [-2, 2, 5]@3 [-2, 2, 5] [-4, 0, 3]@4 [-3, 2b, 4]@4 [-2, 1, 5]@4`).slow(8).s("supersaw")
 }
 
 /*  BASS  */
@@ -209,7 +212,7 @@ let leadGtrPat = {
 let leadPat = {
   _name: 'lead',
   chorus1: note(`[[9 ~]!2 ~ 9 10b 9 10b 6 [8 ~]!2 ~ 7 ~ 7 ~ 7b]!3 [[9 ~]!2 ~ 9 10b 9 10b 6 7@8]`).lpf(saw.range(400, 6000).seg(64).slow(8)).lpq(10).vel(.75),
-  chorus2: note(`[[9 ~]!2 ~ 9 10b 9 10b 6 [8 ~]!2 ~ 7 ~ 7 ~ 7b]!3 [[9 ~]!2 ~ 9 10b 9 10b 6 7@8]`).vel(.8)
+  chorus2: note(`[[9 ~]!2 ~ 9 10b 9 10b 6 [8 ~]!2 ~ 7 ~ 7 ~ 7b]!3 [[9 ~]!2 ~ 9 10b 9 10b 6 7@8]`).vel(.9)
 }
 
 // let LEADOUT = note(`7`).scale("C:phrygian").trans(-24).s("wanglead:1").rel(0.1).gain(.85)
@@ -218,7 +221,9 @@ let leadPat = {
   *      MIXER!!      *
   ********************/
 
-let section = 'verse1'
+// intro introFill main verse1 verse1Fill verse2 verse2Fill chorus1 chorus2 chorus3
+
+let section = 'main'
 
 $DRUMS: sectionMapping(drumsPat, section)
   .gain(0.9)
@@ -230,7 +235,8 @@ $BASS: sectionMapping(bassGtrPat, section)
 
 $GUITAR: sectionMapping(guitarPat, section)
   .scale("C:phrygian").pan(sine.segment(32).range(.35, .65)).dec(4).sus(0).hpf(150).chebyshev(.3, .1).hpf(250)
-  .gain(0.175)
+  // .gain(0.175)
+  .gain(0.4)
 
 $KEYS: sectionMapping(keysPat, section)
   .s("supersaw").orbit(2).o(1).room(.3).rsize(4).delay(.3).pan(sine.fast(7).segment(31).range(.35, .65))
@@ -258,9 +264,10 @@ _$SNARERUSH:  s("~!3 [sd!32]").slow(8)
 
 _$WANGNOISE: s("wangnoise").rel(.7).hell("{0!3 9@2 6!3 11@2 13!3 5@2 4@1}%9".div(32), 4)
   .fast(2).jux(press).o(1).delay(.3).room(.3)
+  .sometimesBy(0.2, x => x.speed(rand.range(.10, .20)))
   .gain(slider(0.7532, 0, 1.4))
 
 all(x => x
-  // .chebyshev(slider(0, 0, 0.5, 0.02))
-  .compressor("-10:10:.9:.04:.05").postgain(slider(1, 0, 1, 0.05))
+  .chebyshev(slider(0, 0, 0.5, 0.02))
+  .compressor("-10:10:.9:.04:.05").postgain(slider(1, 0, 1, 0.05))  
 )
