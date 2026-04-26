@@ -6,6 +6,19 @@ samples('github:chadmadna/wangstrudel')
 
 setCpm(120/4)
 
+await initHydra()
+
+src(o0)
+  .add(
+    solid(0,0,0)
+      .add(
+        voronoi(1000, 5).mask(noise(200, 0.3)))
+      .modulateRotate(voronoi(1000, 0.4).kaleid(100))
+      .modulateScale(noise(H(`<1 100>`.slow(2)), H(`<0.11 0.4>`.slow(2)), H(`<0.01 0.02>`.slow(2))).modulate(noise(10, .1)))
+      .scale(8))
+  .color(0.7, 0.7, 0.7)
+  .out(o0)
+
 /* drums */
 $DRUMS: stack(
   s("bd sd").slow(4)
@@ -35,7 +48,7 @@ _$BASSLINE: note("g1!32 c1!32".slow(4)).s("wt_dbass").n(rand.range(0, 8)).clip(1
   .sinefold(.5).gain(1)
 /* ok */
 _$OKE: s("embegeoke").slow(8).chop(16).hpf(400).lpf(4000).sinefold(0.3)
-  // .room(.9).delay(.6)
+  .room(.9).delay(.6)
 /* acting */
 _$AKTING: s("akting").slow(8).chop(16).hpf(400).lpf(4000).diode(0.6)
   .delay(.5).delayfb(.4).room(.5)
