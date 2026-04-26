@@ -114,7 +114,7 @@ let organPat = {
 }
 
 let keysPat = {
-  main: chord(`<Fm Cm>`).anchor("<F5 G5>").voicing().fast(2), 
+  main: chord(`<Fm Cm>`).anchor("<F5 G5>").voicing().fast(2),
   chorus: note(`<[G#4@2 G#5 G#4] [G4@2 G5 G4] [F4@2 F5 F4@2 F4 F5@2]@2 [C4@2 C5 C4@2 C4 C5@2]@2 [D#4@2 D#5 D#4@2 D#4 D#5@2]@2>`).fast(2),
   outro: note(`<[G#4@2 G#5 G#4] [G4@2 G5 G4] [F4@2 F5 F4@2 F4 F5@2]@2 [C4, C5, G5]@4>`).fast(2),
 }
@@ -248,7 +248,7 @@ let verse_b_1 = stack(
     s(`[bd ~ ~ bd] [~ bd ~ ~] [bd ~ ~ bd] [~ bd ~ ~]`),
     s(`[bl <bl*2 ~> ~ bl]*4`),
     s(`[~ oh]*8`),
-    s(`[~ sd]*4`), 
+    s(`[~ sd]*4`),
     s(`[~ ~ [~ mt*2] lt*2]*2`),
   ).slow(2)
 )
@@ -400,24 +400,25 @@ let outro_3 = stack(
 )
 
 $duck: s(`sd!4`).gain(.00001).duckorbit(2).duckattack(.25).duckdepth(.5)
-$: arrange(
-  [8, intro_1],
-  [8, intro_2],
-  [8, verse_a_1],
-  [8, verse_a_2],
-  [8, prechorus_a_1],
-  [8, prechorus_a_2],
-  [8, verse_b_1],
-  [8, verse_b_2],
-  [8, prechorus_b_1],
-  [8, prechorus_b_2],
-  [16, break_1],
-  [12, break_2],
-  [4, break_3],
-  [16, chorus_1],
-  [16, chorus_2],
-  [8, outro_1],
-  [4, outro_2],
-  [4, outro_3],
-  [64, s(`~`)]
+
+$intro: intro_2.compressor("-15:10:.9:.04:.05").postgain(1)
+
+_$full: stack(
+  verse_a_1  //8
+  // verse_a_2  //8
+  // prechorus_a_1  //8
+  // prechorus_a_2  //8
+  // verse_b_1  //8
+  // verse_b_2  //8
+  // prechorus_b_1  //8
+  // prechorus_b_2  //8
+  // break_1  //16
+  // break_2  //12
+  // break_3  //4
+  // chorus_1 //16
+  // chorus_2 //16
+  // outro_1  //8
+  // outro_2  //4
+  // outro_3  //4
+  // s(`~`)
 ).compressor("-15:10:.9:.04:.05").postgain(1)
