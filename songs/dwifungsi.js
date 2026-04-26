@@ -141,7 +141,7 @@ let drumsPat = {
     s(`bd*4`),
     s(`[~ [ht ht]] [lt mt] [~ mt] [lt mt] [mt ht] [ht [mt mt]] [[sd2]!4]@2`).slow(2),
     s(`~!6 [[cp]!4]@2`).vel(.4).slow(2),
-    s("cfx").slow(1).delay(.4).dt(.3).dfb(.7).vel(0.8),
+    s("cfx").slow(2).delay(.4).dt(.3).dfb(.7).vel(0.8),
   ),
   chorus1: stack(
     s(`bd*4`),
@@ -229,8 +229,8 @@ $DRUMS: sectionMapping(drumsPat, section)
   .gain(0.9)
   // .delay(`0@3 0.8`).delayfb(`.5 0@2 .8`)
 
-$BASS: sectionMapping(bassGtrPat, section)
-  .s("gm_slap_bass_2").hard(.6, .4).chebyshev(.1).hpf(70).hpq(1)
+_$BASS: sectionMapping(bassGtrPat, section)
+  .s("gm_slap_bass_2").hard(.6, .4).chebyshev(.1).hpf(50).hpq(5)
   .gain(1)
 
 _$GUITAR: sectionMapping(guitarPat, section)
@@ -262,7 +262,7 @@ _$SNARERUSH:  s("~!3 [sd!32]").slow(8)
   .phaser(.8).gain(saw.slow(2).range(0.3, 1.3))
   .postgain(slider(1,0,1))
 
-$WANGNOISE: s("wangnoise").rel(.7).hell("{0!3 9@2 6!3 11@2 13!3 5@2 4@1}%9".div(32), 4)
+_$WANGNOISE: s("wangnoise").rel(.7).hell("{0!3 9@2 6!3 11@2 13!3 5@2 4@1}%9".div(32), 4)
   .fast(2).jux(press).o(1).delay(.3).room(.3)
   .sometimesBy(0.2, x => x.speed(rand.range(.10, .20)))
   .gain(slider(0.4536, 0, 1.4))
