@@ -32,7 +32,7 @@ register('hell', (beginPat, loopAtPat, pat) => {
 })
 
 /**************
- *  PATTERNS  *
+ *  SECTIONS  *
  *************/
 
 let silenced = s(`~`)
@@ -99,8 +99,11 @@ let sectionMapping = (pat, section) => {
   }
 }
 
-/*  DRUMS  */
+/**************
+ *  PATTERNS  *
+ *************/
 
+/*  DRUMS  */
 let drumsPat = {
   _name: 'drums',
   intro: stack(
