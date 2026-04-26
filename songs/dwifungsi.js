@@ -223,7 +223,7 @@ let leadPat = {
 
 // intro introFill main verse1 verse1Fill verse2 verse2Fill chorus1 chorus2 chorus3
 
-let section = 'main'
+let section = 'intro'
 
 $DRUMS: sectionMapping(drumsPat, section)
   .gain(0.9)
@@ -233,10 +233,14 @@ $BASS: sectionMapping(bassGtrPat, section)
   .s("gm_slap_bass_2").hard(.6, .4).chebyshev(.1).hpf(70).hpq(1)
   .gain(1)
 
-$GUITAR: sectionMapping(guitarPat, section)
+_$GUITAR: sectionMapping(guitarPat, section)
   .scale("C:phrygian").pan(sine.segment(32).range(.35, .65)).dec(4).sus(0).hpf(150).chebyshev(.3, .1).hpf(250)
   // .gain(0.175)
   .gain(0.4)
+
+_$LEGTR: sectionMapping(leadGtrPat, section)
+  .scale("C:phrygian").s("gm_overdriven_guitar").att(0).dec(3).sus(.4).o(2).vib("6:.1").room(.5).delay(.4)
+  .gain(0.6)
 
 $KEYS: sectionMapping(keysPat, section)
   .s("supersaw").orbit(2).o(1).room(.3).rsize(4).delay(.3).pan(sine.fast(7).segment(31).range(.35, .65))
@@ -244,10 +248,6 @@ $KEYS: sectionMapping(keysPat, section)
 
 $LEAD: sectionMapping(leadPat, section)
   .scale("C:phrygian").slow(8).trans(-24).s("<wanglead:0!7 wanglead:1>").legato(1.1).rel(0.1).gain(.9)
-
-$LEGTR: sectionMapping(leadGtrPat, section)
-  .scale("C:phrygian").s("gm_overdriven_guitar").att(0).dec(3).sus(.4).o(2).vib("6:.1").room(.5).delay(.4)
-  .gain(0.6)
 
 /*  ONE-SHOTS  */
 $CRASH: s("cfx").slow(8)
