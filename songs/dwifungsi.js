@@ -141,7 +141,7 @@ let drumsPat = {
     s(`bd*4`),
     s(`[~ [ht ht]] [lt mt] [~ mt] [lt mt] [mt ht] [ht [mt mt]] [[sd2]!4]@2`).slow(2),
     s(`~!6 [[cp]!4]@2`).vel(.4).slow(2),
-    s("cfx").slow(2).delay(.4).dt(.3).dfb(.7).vel(0.8),
+    s("cfx").slow(1).delay(.4).dt(.3).dfb(.7).vel(0.8),
   ),
   chorus1: stack(
     s(`bd*4`),
@@ -223,13 +223,13 @@ let leadPat = {
 
 // intro introFill main verse1 verse1Fill verse2 verse2Fill chorus1 chorus2 chorus3
 
-let section = 'intro'
+let section = 'verse1'
 
 $DRUMS: sectionMapping(drumsPat, section)
   .gain(0.9)
   // .delay(`0@3 0.8`).delayfb(`.5 0@2 .8`)
 
-_$BASS: sectionMapping(bassGtrPat, section)
+$BASS: sectionMapping(bassGtrPat, section)
   .s("gm_slap_bass_2").hard(.6, .4).chebyshev(.1).hpf(70).hpq(1)
   .gain(1)
 
@@ -240,7 +240,7 @@ _$GUITAR: sectionMapping(guitarPat, section)
 
 $LEGTR: sectionMapping(leadGtrPat, section)
   .scale("C:phrygian").s("gm_overdriven_guitar").att(0).dec(3).sus(.4).o(2).vib("6:.1").room(.5).delay(.4)
-  .gain(0.5)
+  .gain(0.4)
 
 $KEYS: sectionMapping(keysPat, section)
   .s("supersaw").orbit(2).o(1).room(.3).rsize(4).delay(.3).pan(sine.fast(7).segment(31).range(.35, .65))
@@ -262,10 +262,10 @@ _$SNARERUSH:  s("~!3 [sd!32]").slow(8)
   .phaser(.8).gain(saw.slow(2).range(0.3, 1.3))
   .postgain(slider(1,0,1))
 
-_$WANGNOISE: s("wangnoise").rel(.7).hell("{0!3 9@2 6!3 11@2 13!3 5@2 4@1}%9".div(32), 4)
+$WANGNOISE: s("wangnoise").rel(.7).hell("{0!3 9@2 6!3 11@2 13!3 5@2 4@1}%9".div(32), 4)
   .fast(2).jux(press).o(1).delay(.3).room(.3)
   .sometimesBy(0.2, x => x.speed(rand.range(.10, .20)))
-  .gain(slider(0.7532, 0, 1.4))
+  .gain(slider(0.4536, 0, 1.4))
 
 all(x => x
   .chebyshev(slider(0, 0, 0.5, 0.02))
