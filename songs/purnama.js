@@ -140,11 +140,11 @@ let drumsPat = {
 let snareRush = s("~!3 [sd!32]").slow(2)
 let crash = s("cfx").slow(8)
 let riser = s("~!6 pink@2").slow(8)
-let wangnoise = note("c2").s("wangnoise").loopAt(8).trans(12).chebyshev(.1)
+let wangnoise = note("c2").s("wangnoise").loopAt(8).trans(12).gain(1)
 
 /**********************************
   *            MIXER!!            *
-  **********************************/
+  *********************************/
 _$: stack(
   drumsPat.break.apply(drumsTrack),
   bassPat.main.apply(bassTrack),
@@ -420,4 +420,4 @@ $: arrange(
   [4, outro_2],
   [4, outro_3],
   [64, s(`~`)]
-).compressor("-15:10:.9:.04:.05").postgain(.8)
+).compressor("-15:10:.9:.04:.05").postgain(1)
