@@ -229,7 +229,7 @@ $DRUMS: sectionMapping(drumsPat, section)
   .gain(0.9)
   // .delay(`0@3 0.8`).delayfb(`.5 0@2 .8`)
 
-$BASS: sectionMapping(bassGtrPat, section)
+_$BASS: sectionMapping(bassGtrPat, section)
   .s("gm_slap_bass_2").hard(.6, .4).chebyshev(.1).hpf(70).hpq(1)
   .gain(1)
 
@@ -238,9 +238,9 @@ _$GUITAR: sectionMapping(guitarPat, section)
   // .gain(0.175)
   .gain(0.4)
 
-_$LEGTR: sectionMapping(leadGtrPat, section)
+$LEGTR: sectionMapping(leadGtrPat, section)
   .scale("C:phrygian").s("gm_overdriven_guitar").att(0).dec(3).sus(.4).o(2).vib("6:.1").room(.5).delay(.4)
-  .gain(0.6)
+  .gain(0.5)
 
 $KEYS: sectionMapping(keysPat, section)
   .s("supersaw").orbit(2).o(1).room(.3).rsize(4).delay(.3).pan(sine.fast(7).segment(31).range(.35, .65))
@@ -269,5 +269,5 @@ _$WANGNOISE: s("wangnoise").rel(.7).hell("{0!3 9@2 6!3 11@2 13!3 5@2 4@1}%9".div
 
 all(x => x
   .chebyshev(slider(0, 0, 0.5, 0.02))
-  .compressor("-10:10:.9:.04:.05").postgain(slider(1, 0, 1, 0.05))  
+  .compressor("-10:10:.9:.04:.05").postgain(slider(1, 0, 1, 0.05))
 )

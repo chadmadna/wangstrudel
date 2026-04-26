@@ -12,7 +12,7 @@ $DRUMS: stack(
     .chebyshev(1.3, 0.1)
     .o(1).room(.7).rsize(2).rfade(2)
     .vel(1),
-  s("[~ hh hh ~ rd@2 hh hh]*2")
+  s("[~ hh hh ~ rd@2 hh hh]*2").slow(1)
     .chebyshev(.35).fast(1)
     .vel(1),
 )
@@ -34,12 +34,12 @@ _$BASSLINE: note("g1!32 c1!32".slow(4)).s("wt_dbass").n(rand.range(0, 8)).clip(1
   .lpf(60).lpe(8).lpq(20).lpd(.3).lps(.1).lpr(.2)
   .sinefold(.5).gain(1)
 /* ok */
-$OKE: s("embegeoke").slow(8).chop(16).hpf(400).lpf(4000).sinefold(0.6)
-    .room(.9).delay(.6)
+_$OKE: s("embegeoke").slow(8).chop(16).hpf(600).lpf(4000).sinefold(0.6)
+    // .room(.9).delay(.6)
 /* acting */
 _$AKTING: s("akting").slow(8).chop(16).hpf(400).lpf(4000).diode(0.6)
   .delay(.5).delayfb(.4).room(.5)
-  
+
 all(x => x
-  .compressor("-5:20:1:.09:.04").postgain(.8) 
+  .compressor("-5:20:1:.09:.04").postgain(.8)
 )
