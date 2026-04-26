@@ -88,7 +88,7 @@ let riserTrack = x => x
   .lpf(200).lpq(20).lpenv(10).lpa(6).lpr(1.3)
   .gain(slider(0.3848, 0, .8))
 
-let wangnoiseTrack = x => x.chop(64)
+let wangnoiseTrack = x => x.chop(64).gain(1)
 
 /**********************************
   *          PATTERNS             *
@@ -140,7 +140,7 @@ let drumsPat = {
 let snareRush = s("~!3 [sd!32]").slow(2)
 let crash = s("cfx").slow(8)
 let riser = s("~!6 pink@2").slow(8)
-let wangnoise = note("c2").s("wangnoise").loopAt(8).trans(12).gain(.5)
+let wangnoise = note("c2").s("wangnoise").loopAt(8).trans(12).chebyshev(.1)
 
 /**********************************
   *            MIXER!!            *
@@ -158,7 +158,7 @@ _$: stack(
   wangnoise.apply(wangnoiseTrack),
 )
   .compressor("-10:5:.9:.04:.05")
-  .postgain(slider(0.8388, 0, 1.2))
+  .postgain(slider(1.002, 0, 1.2))
 
 
 /**********************************
@@ -416,7 +416,7 @@ $: arrange(
   [4, break_3],
   [16, chorus_1],
   [16, chorus_2],
-  [16, outro_1],
+  [8, outro_1],
   [4, outro_2],
   [4, outro_3],
   [64, s(`~`)]
