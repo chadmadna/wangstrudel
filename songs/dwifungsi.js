@@ -123,10 +123,12 @@ let drumsPat = {
     s(`~ [~@2 ht ht] [mt [mt mt]] [lt [ht, bl]]`),
   ),
   verse: stack(
-    s(`bd [~ bd] bd bd`),
-    s(`~ sd ~ sd`),
-    s(`[hh oh]!4`),
-    s(`~@2 bl mt`),
+    s(`[bd [~ bd] bd bd]!6 [bd!4]!2`).slow(8),
+    s(`[~ sd ~ sd]!6 <[[~ [~ sd*4]]@2] [[~ sd ~ sd] [[~ sd] [sd2!2 ~ sd2]]]>@2`).slow(8),
+    s(`[[hh oh]!4]!6 <~ [[hh oh]!6 ~!2]>@2`).slow(8),
+    s(`~!6 <[[~ [~ cp*4]]@2] [~ [~ [cp!2 ~ cp]]]>@2`).vel(.4).slow(8),
+    s(`[~@2 [~ bl] [~ mt]]!6 <[[[~ ht*2] [mt mt*2] [lt lt*2] [ht ht*2] [mt mt*2] [lt lt*2] ~!2]@2] [[[~ bl ~ mt]!2] [[~ ht*2] [mt mt*2] ~ mt]]>@2`).slow(8),
+    s("~!6 cfx!2").slow(8).delay(.4).dt(.3).dfb(.7).vel(0.8),
   ),
   fillIntro: stack(
     s(`bd*4`),
