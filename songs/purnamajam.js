@@ -51,5 +51,5 @@ _$: chord(
 ).voicing().s("gm_piano").slow(2).trans(12).gain(.15).room(.5)
 
 all(x => x
-  .compressor("-5:5:.4:.04:.05").postgain(slider(1.4, 0, 1.4))
+  .compressor("-5:5:.4:.04:.05").postgain(slider(1.064, 0, 1.4))
 )

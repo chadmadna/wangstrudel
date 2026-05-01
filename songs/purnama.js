@@ -44,7 +44,6 @@ let flash = osc(10, 1, .7)
 flash
     .diff(sky)
     .add(moon)
-    // .mult(moon)
     .mult(hue)
     // .add(hue)
     // .diff(hue)
@@ -404,7 +403,7 @@ let outro_3 = stack(
 
 $duck: s(`sd!4`).gain(.00001).duckorbit(2).duckattack(.25).duckdepth(.5)
 
-$intro: intro_2.compressor("-15:10:.9:.04:.05").postgain(1)
+$intro: intro_2
 
 _$full: stack(
   verse_a_1  //8
@@ -424,4 +423,9 @@ _$full: stack(
   // outro_2  //4
   // outro_3  //4
   // s(`~`)
-).compressor("-15:10:.9:.04:.05").postgain(1)
+)
+
+all(x => x
+  .compressor("-15:10:.9:.04:.05")
+  .postgain(slider(0.8,0,1, 0.1))
+)
