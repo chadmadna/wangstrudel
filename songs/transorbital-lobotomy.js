@@ -4,6 +4,11 @@
 samples('github:bubobubobubobubo/dough-waveforms')
 samples('github:chadmadna/wangstrudel')
 
+// RMPGNGSLRYMN \m/
+register('hell', (beginPat, loopAtPat, pat) => {
+  return pat.set.out(begin(beginPat)).clip(1).loopat(loopAtPat).fast(loopAtPat)
+})
+
 setCpm(120/4)
 
 await initHydra()
@@ -35,24 +40,33 @@ $GROWL: note("C0").s("sbd*32").fast("<64 48>".slow(2))
   .chebyshev(perlin.range(0.8, 2).fast(4).seg(16))
   .diode(perlin.range(0.9, 1.2).fast(4).seg(16))
   .sometimesBy(0.1, x => x.o(1).room(1))
+  .gain(.5)
 /* needle machine */
 _$NEEDLE: note("C1 G1").s("supersaw").slow(4)
   .fm("<4 10>".slow(2)).fmh("<4.002 16.01>".slow(2))
   .fm21("<10 50>".slow(2)).fmh2(15.001)
   .sometimesBy(0.4, x => x.fm31(2200).fmh(11/3))
   .vel(1).chebyshev(.5, 1.2)
+  .gain(.9)
 /* bassline */
 _$BASSLINE: note("g1!32 c1!32".slow(4)).s("wt_dbass").n(rand.range(0, 8)).clip(1.2)
   .fm(3).fmh(sine.range(1, 1.03).slow(2)).fmdec(.5).fmsus(.3).fmrel(.2)
   .lpf(60).lpe(8).lpq(20).lpd(.3).lps(.1).lpr(.2)
-  .sinefold(.5).gain(1)
+  .sinefold(.5)
+  .gain(.7)
+/* wangnoise */
+_$WANGNOISE: s("wangnoise").rel(.7).hell("{0!3 9@2 6!3 11@2 13!3 5@2 4@1}%9".div(32), 4)
+  .fast(2).jux(press).o(1).delay(.3).room(.3)
+  .sometimesBy(0.2, x => x.speed(rand.range(.10, .20)))
+  .gain(slider(0.9436, 0, 1.4))
+
 /* ok */
-_$OKE: s("embegeoke").slow(8).chop(16).hpf(400).lpf(4000).sinefold(0.3)
-  .room(.9).delay(.6)
+_$OKE: s("embegeoke").slow(8).chop(16).hpf(300).lpf(6000).sinefold(0.1)
+  // .room(.9).delay(.6)
 /* acting */
-_$AKTING: s("akting").slow(8).chop(16).hpf(400).lpf(4000).diode(0.6)
-  .delay(.5).delayfb(.4).room(.5)
+_$AKTING: s("akting").slow(8).chop(16).hpf(300).lpf(6000).diode(0.8)
+  // .delay(.5).delayfb(.4).room(.5)
 
 all(x => x
-  .compressor("-5:20:1:.09:.04").postgain(.8)
+  .compressor("-3:10:1:.09:.04").postgain(.8)
 )

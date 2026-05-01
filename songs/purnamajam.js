@@ -20,7 +20,7 @@ solid(0, 0.2, 0.4)
     .color(.6, .05, .04)
     .saturate(1)
     .blend(solid(.4, .4, .8), .3)
-    .mask(voronoi(1000, 20).thresh(.4).invert()), 0.8
+    .mask(voronoi(1000, 20).thresh(.1).invert()), 0.8
   )
   .blend(flash.mask(voronoi(1000, 20).thresh(.2).invert()).mask(circle), .8)
   .add(circle)
@@ -51,5 +51,5 @@ _$: chord(
 ).voicing().s("gm_piano").slow(2).trans(12).gain(.15).room(.5)
 
 all(x => x
-  .compressor("-5:5:.4:.04:.05").postgain(1.4)
+  .compressor("-5:5:.4:.04:.05").postgain(slider(1.4, 0, 1.4))
 )

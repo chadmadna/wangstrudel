@@ -223,9 +223,12 @@ let leadPat = {
   *      MIXER!!      *
   ********************/
 
-// intro introFill main verse1 verse1Fill verse2 verse2Fill chorus1 chorus2 chorus3
+// intro main verse1 verse2 chorus1 chorus2 chorus3
 
-let section = 'verse1'
+// let section = 'intro'
+let section = 'main'
+// let section = 'verse2'
+// let section = 'chorus3'
 
 $DRUMS: sectionMapping(drumsPat, section)
   .gain(0.9)
@@ -235,12 +238,12 @@ _$BASS: sectionMapping(bassGtrPat, section)
   .s("gm_slap_bass_2").hard(.6, .4).chebyshev(.1).hpf(50).hpq(5)
   .gain(1)
 
-_$GUITAR: sectionMapping(guitarPat, section)
-  .scale("C:phrygian").pan(sine.segment(32).range(.35, .65)).dec(4).sus(0).hpf(150).chebyshev(.3, .1).hpf(250)
+$GUITAR: sectionMapping(guitarPat, section)
+  .scale("C:phrygian").pan(sine.segment(32).range(.35, .65)).dec(4).sus(0).hpf(150).chebyshev(.3, .1).hpf(250).lpf(8000)
   // .gain(0.175)
   .gain(0.4)
 
-$LEGTR: sectionMapping(leadGtrPat, section)
+_$LEGTR: sectionMapping(leadGtrPat, section)
   .scale("C:phrygian").s("gm_overdriven_guitar").att(0).dec(3).sus(.4).o(2).vib("6:.1").room(.5).delay(.4)
   .gain(0.4)
 
@@ -267,9 +270,9 @@ _$SNARERUSH:  s("~!3 [sd!32]").slow(8)
 _$WANGNOISE: s("wangnoise").rel(.7).hell("{0!3 9@2 6!3 11@2 13!3 5@2 4@1}%9".div(32), 4)
   .fast(2).jux(press).o(1).delay(.3).room(.3)
   .sometimesBy(0.2, x => x.speed(rand.range(.10, .20)))
-  .gain(slider(0.4536, 0, 1.4))
+  .gain(slider(0.5796, 0, 1.4))
 
 all(x => x
   .chebyshev(slider(0, 0, 0.5, 0.02))
-  .compressor("-10:10:.9:.04:.05").postgain(slider(1, 0, 1, 0.05))
+  .compressor("-10:10:.9:.04:.05").postgain(slider(0, 0, 1, 0.05))
 )

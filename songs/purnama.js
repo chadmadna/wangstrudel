@@ -47,6 +47,7 @@ flash
     // .mult(moon)
     .mult(hue)
     // .add(hue)
+    // .diff(hue)
     .color(.9, .2, .2)
     .saturate(1)
     .out(o0)
