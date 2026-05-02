@@ -60,7 +60,7 @@ _$OKE: s("embegeoke").slow(8).chop(16).hpf(300).lpf(10000).cubic(.2)
   .gain(slider(2.4, 0, 3, 0.1))
   .room(.3)
 /* acting */
-_$AKTING: s("akting").slow(8).chop(16).hpf(300).lpf(6000).cubic(0.5)
+$AKTING: s("akting").slow(8).chop(16).hpf(300).lpf(6000).cubic(0.5)
   .gain(slider(0.8, 0, 2, 0.1))
   // .room(.5).delay(.2)
 
