@@ -30,9 +30,9 @@ $DRUMS: stack(
     .chebyshev(1.3, 0.1)
     .o(1).room(.7).rsize(2).rfade(2)
     .vel(1),
-  // s("[~ hh hh ~ rd@2 hh hh]*2").slow(1)
-  //   .chebyshev(.35).fast(1)
-  //   .vel(.3),
+  s("[~ hh hh ~ rd@2 hh hh]*2").slow(1)
+    .chebyshev(.35).speed(1).hpf(1000).lpf(10000).lpq(10)
+    .vel(.4),
 )
 /* pummeling growl */
 $GROWL: note("C0").s("sbd*32").fast("<64 48>".slow(2))
@@ -42,26 +42,27 @@ $GROWL: note("C0").s("sbd*32").fast("<64 48>".slow(2))
   .sometimesBy(0.1, x => x.o(1).room(1))
   .gain(.6)
 /* needle machine */
-_$NEEDLE: note("C1 G1").s("supersaw").slow(4)
+$NEEDLE: note("C1 G1").s("supersaw").slow(4)
   .fm("<4 10>".slow(2)).fmh("<4.002 16.01>".slow(2))
   .fm21("<10 50>".slow(2)).fmh2(15.001)
-  // .sometimesBy(0.4, x => x.fm31(2200).fmh(11/3))
+  .sometimesBy(0.4, x => x.fm31("<2200 0>".slow(2)).fmh(11/3))
   .vel(1).chebyshev(.5, 1.6)
   .gain(1)
 /* wangnoise */
-_$WANGNOISE: s("wangnoise").rel(.7).hell("{0!3 9@2 6!3 11@2 13!3 5@2 4@1}%9".div(32), 4)
+$WANGNOISE: s("wangnoise").rel(.7)
+  .hell("{0!3 9@2 6!2 11@3 13!3 5@2 4@1}%5".div(16), 4)
   .fast(2).jux(press).o(1).delay(.3).room(.3)
   .sometimesBy(0.2, x => x.speed(rand.range(.10, .20))).hpf(400)
-  .gain(slider(0.7196, 0, 1.4))
+  .gain(slider(0.8526, 0, 1.4))
 
 /* ok */
 _$OKE: s("embegeoke").slow(8).chop(16).hpf(300).lpf(10000).cubic(.2)
-  .gain(slider(3, 0, 3, 0.1))
+  .gain(slider(2.4, 0, 3, 0.1))
   .room(.3)
 /* acting */
 _$AKTING: s("akting").slow(8).chop(16).hpf(300).lpf(6000).cubic(0.5)
-  .gain(slider(1.5, 0, 2, 0.1))
-  .room(.5).delay(.2)
+  .gain(slider(0.8, 0, 2, 0.1))
+  // .room(.5).delay(.2)
 
 all(x => x
   .compressor("0:10:1:.09:.04").postgain(.7)
