@@ -38,18 +38,18 @@
     "c2": "wanglead/wanglead_c2.wav",
     "c3": "wanglead/wanglead_c3.wav",
     "c4": "wanglead/wanglead_c4.wav",
-    "c5": "wanglead/wanglead_c5.wav",
+    "c5": "wanglead/wanglead_c5.wav"
   },
   "wangcet": {
     "c3": "wangcet/wangcet_c3.wav",
     "c4": "wangcet/wangcet_c4.wav",
-    "c5": "wangcet/wangcet_c5.wav",
+    "c5": "wangcet/wangcet_c5.wav"
   },
   "wangnok": {
     "c2": "wangnok/wangnok_c2.wav",
     "c3": "wangnok/wangnok_c3.wav",
     "c4": "wangnok/wangnok_c4.wav",
-    "c5": "wangnok/wangnok_c5.wav",
+    "c5": "wangnok/wangnok_c5.wav"
   },
   "wangmini": "wangmini/wangmini_c4.wav",
   "wangpad":{
