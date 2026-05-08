@@ -58,5 +58,6 @@
   },
   "wangnoise": "wangnoise/wangnoise_screech.wav",
   "embegeoke": "random/embegeoke.wav",
-  "akting": "random/akting.wav"
+  "akting": "random/akting.wav",
+  "wangfx": "random/wangfx.wav"
 }
