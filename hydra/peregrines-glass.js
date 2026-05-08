@@ -1,0 +1,26 @@
+s0.initImage("https://upload.wikimedia.org/wikipedia/commons/f/f0/Peregrine_falcon_%28Falco_peregrinus%29%2C.jpg")
+
+let birbs = src(s0)
+	.modulateRepeat(noise(1, .1), 2, 3)
+	.mult(noise(3, 0.3)
+		.modulatePixelate(noise(100, 0.1)
+			.contrast(0.1))
+		.invert())
+
+let sheen = noise(4, 0.5, 0.1)
+	.contrast(0.2)
+	.brightness(.3)
+	.modulateScale(noise(3, .1)
+		.kaleid(100))
+	.modulateRotate(osc(2))
+	.blend(solid(.5, .8, .9), .3)
+	.blend(src(o0))
+
+
+solid(1, 1, 1)
+	.layer(birbs)
+	.blend(sheen, .5)
+	.modulateScale(noise(5, .1), .1)
+	.modulate(src(s0)
+		.modulateRepeat(noise(1, .1), 2, 3), 0.2)
+	.out(o0)
