@@ -6,15 +6,15 @@ samples('github:yaxu/clean-breaks')
 setCpm(170/4)
 
 // 1st note and 5th note of the Lydian scale
-$BASS: note("0 4").slow(4).seg(8)
-  .mask("1 0 1!2 0@4")
+$BASS: note("0 [3@3 4]").slow(4).seg(8)
+  .mask("1 0 1!2 0 1@2 0")
   .scale("A:lydian").trans(-24)
   .s("square").lpf(400)
   .rel(.4)
   .gain(.7)
 
-// "I V" chord progression in Lydian mode
-$PADS: chord("AM7 EM7").voicing().slow(4)
+// "I II" chord progression in Lydian mode
+$PADS: chord("AM7#11 BM7").voicing().slow(4)
   .s("gm_string_ensemble_1")
   .gain(.4)
 
