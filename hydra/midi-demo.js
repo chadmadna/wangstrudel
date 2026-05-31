@@ -7,7 +7,7 @@ await midi.start({
 midi.show()
 
 let trig = note('*', 0)
-	.adsr(100, Ï500, .6, 500)
+	.adsr(100, 500, .6, 500)
 let knob1 = cc(21).smooth(0.5)
 
 let fade = solid(trig, trig, trig)
@@ -73,33 +73,4 @@ src(o2)
 
 s1.initVideo("https://media0.giphy.com/media/3ohs7O2afIz1a8bWPm/giphy.mp4")
 s2.initImage("https://upload.wikimedia.org/wikipedia/commons/b/bf/Hieronymus_Bosch_-_Triptych_of_Garden_of_Earthly_Delights_%28detail%29_-_WGA2526.jpg")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 s3.initImage("https://upload.wikimedia.org/wikipedia/commons/5/57/KIm_Bahlil_Lahadalia.jpg")
